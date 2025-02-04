@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Mock data - Replace with API call in production
+const downloads = [
+  {
+    title: "The Dark Knight",
+    progress: 100,
+    size: "2.3 GB",
+    status: "completed"
+  },
+  {
+    title: "Inception",
+    progress: 45,
+    size: "1.8 GB",
+    status: "downloading"
+  }
+];
+---
+
+<Layout title="Downloads - StreamFlix">
+  <div class="pt-20 container mx-auto px-4">
+    <h1 class="text-3xl font-bold mb-8">Downloads</h1>
+
+    <div class="space-y-4">
+      {downloads.map(download => (
+        <div class="bg-secondary rounded-lg p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold">{download.title}</h3>
+            <span class="text-sm text-gray-400">{download.size}</span>
+          </div>
+          
+          <div class="relative w-full h-2 bg-gray-700 rounded-full mb-2">
+            <div 
+              class={`absolute left-0 top-0 h-full rounded-full ${
+                download.status === 'completed' ? 'bg-green-500' : 'bg-accent'
+              }`}
+              style={`width: ${download.progress}%`}
+            />
+          </div>
+          
+          <div class="flex justify-between items-center">
+            <span class="text-sm text-gray-400">{download.progress}%</span>
+            {download.status === 'downloading' ? (
+              <button class="text-sm text-accent hover:text-accent/80">Pause</button>
+            ) : (
+              <span class="text-sm text-green-500">Completed</span>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>

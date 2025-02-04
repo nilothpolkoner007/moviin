@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MovieCard from '../components/MovieCard.astro';
+
+// Mock data - In a real app, this would come from an API
+const featuredMovies = [
+  {
+    title: "The Dark Knight",
+    image: "https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?ixlib=rb-4.0.3",
+    rating: 9.0,
+    genre: "Action"
+  },
+  {
+    title: "Inception",
+    image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixlib=rb-4.0.3",
+    rating: 8.8,
+    genre: "Sci-Fi"
+  },
+  {
+    title: "Interstellar",
+    image: "https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3",
+    rating: 8.6,
+    genre: "Sci-Fi"
+  }
+];
+
+const categories = [
+  "Action", "Comedy", "Drama", "Horror", "Sci-Fi", "Thriller", "Romance", "Documentary"
+];
+---
+
+<Layout title="StreamFlix - Watch Movies Online">
+  <!-- Hero Section -->
+  <section class="relative h-screen">
+    <img 
+      src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3" 
+      alt="Hero"
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/90 to-black/50">
+      <div class="container mx-auto px-4 h-full flex items-center">
+        <div class="max-w-2xl">
+          <h1 class="text-5xl font-bold mb-4">Unlimited Movies, TV shows, and more</h1>
+          <p class="text-xl mb-8">Watch anywhere. Cancel anytime.</p>
+          <button class="bg-accent hover:bg-accent/90 text-white px-8 py-3 rounded-md text-lg font-semibold">
+            Watch Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Section -->
+  <section class="container mx-auto px-4 py-8">
+    <div class="relative">
+      <input 
+        type="text" 
+        placeholder="Search for movies..."
+        class="w-full bg-secondary py-4 px-6 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent"
+      />
+      <button class="absolute right-4 top-1/2 -translate-y-1/2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl font-bold mb-6">Categories</h2>
+    <div class="flex flex-wrap gap-4">
+      {categories.map(category => (
+        <button class="bg-secondary hover:bg-accent transition-colors px-6 py-2 rounded-full">
+          {category}
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <!-- Featured Movies Section -->
+  <section class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl font-bold mb-6">Featured Movies</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {featuredMovies.map(movie => (
+        <MovieCard {...movie} />
+      ))}
+    </div>
+  </section>
+
+  <!-- Trending Section -->
+  <section class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl font-bold mb-6">Trending Now</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {featuredMovies.map(movie => (
+        <MovieCard {...movie} />
+      ))}
+    </div>
+  </section>
+</Layout>

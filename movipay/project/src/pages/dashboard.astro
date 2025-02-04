@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MovieCard from '../components/MovieCard.astro';
+
+// Mock data - Replace with API call in production
+const watchlist = [
+  {
+    title: "Inception",
+    image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixlib=rb-4.0.3",
+    rating: 8.8,
+    genre: "Sci-Fi"
+  },
+  // Add more movies...
+];
+
+const recentlyWatched = [
+  {
+    title: "Interstellar",
+    image: "https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3",
+    rating: 8.6,
+    genre: "Sci-Fi"
+  },
+  // Add more movies...
+];
+---
+
+<Layout title="Dashboard - StreamFlix">
+  <div class="pt-20 container mx-auto px-4">
+    <!-- User Profile Section -->
+    <div class="bg-secondary rounded-lg p-6 mb-8">
+      <div class="flex items-center gap-4">
+        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center">
+          <span class="text-2xl font-bold">JD</span>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold">John Doe</h2>
+          <p class="text-gray-400">Premium Member</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Watchlist Section -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">My Watchlist</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        {watchlist.map(movie => (
+          <MovieCard {...movie} />
+        ))}
+      </div>
+    </section>
+
+    <!-- Recently Watched Section -->
+    <section>
+      <h2 class="text-2xl font-bold mb-6">Recently Watched</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        {recentlyWatched.map(movie => (
+          <MovieCard {...movie} />
+        ))}
+      </div>
+    </section>
+  </div>
+</Layout>

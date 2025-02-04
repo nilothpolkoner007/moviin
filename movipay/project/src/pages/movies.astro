@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MovieCard from '../components/MovieCard.astro';
+
+// Mock data - Replace with API call in production
+const movies = [
+  {
+    title: "The Dark Knight",
+    image: "https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?ixlib=rb-4.0.3",
+    rating: 9.0,
+    genre: "Action"
+  },
+  // Add more movies...
+];
+
+const genres = ["Action", "Comedy", "Drama", "Horror", "Sci-Fi", "Thriller"];
+---
+
+<Layout title="Movies - StreamFlix">
+  <div class="pt-20 container mx-auto px-4">
+    <!-- Genre Filter -->
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">Genres</h2>
+      <div class="flex flex-wrap gap-4">
+        {genres.map(genre => (
+          <button class="bg-secondary hover:bg-accent transition-colors px-6 py-2 rounded-full">
+            {genre}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Movies Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      {movies.map(movie => (
+        <MovieCard {...movie} />
+      ))}
+    </div>
+  </div>
+</Layout>
